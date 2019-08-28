@@ -31,6 +31,8 @@ public interface Tree <E> {
 
     boolean isBalanced(Node node);
 
+    boolean isBalancedTree();
+
     void traverse(TraverseMode mode);
 
     class Entry<T> {

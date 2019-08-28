@@ -5,7 +5,7 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
 
     private Node<E> root;
     private int size;
-    private int treeMaxHeight = 3; // Максимальная глубина дерева
+    private int treeMaxHeight = 4; // Максимальная глубина дерева
     private boolean balance = true;
 
     @Override
@@ -29,14 +29,10 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
         } else if (previous.shouldBeLeft(value)) {
             if (previous.getHeight() < treeMaxHeight){
                 previous.setLeftChild(node);
-            } else {
-                System.out.println("Превышена максимальная глубина дерева");
             }
         } else {
             if (previous.getHeight() < treeMaxHeight){
                 previous.setRightChild(node);
-            } else {
-                System.out.println("Превышена максимальная глубина дерева");
             }
         }
 
@@ -222,6 +218,10 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
             }
         }
         return true;
+    }
+
+    public boolean isBalancedTree(){
+        return isBalanced(root);
     }
 
     @Override
