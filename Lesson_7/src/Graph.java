@@ -167,9 +167,18 @@ public class Graph {
 
     public void searchWay(String startLabel, String finishLabel){
         Vertex vertex = findVertex(startLabel);
+        Vertex vertexFinish = findVertex(finishLabel);
 
         if (vertex == null){
             throw new IllegalArgumentException("Invalid label: " + startLabel);
+        }
+
+        if (vertexFinish == null){
+            throw new IllegalArgumentException("Invalid label: " + finishLabel);
+        }
+
+        if (startLabel.equals(finishLabel)){
+            throw new IllegalArgumentException("Точка старта и финиша совпадают");
         }
 
         path[vertexList.indexOf(vertex)] = -1;
@@ -206,7 +215,10 @@ public class Graph {
         System.out.println("Кратчайший маршрут из " + stack.peek() + " в " + vertexList.get(last).getLabel());
 
         while (!stack.isEmpty()){
-            System.out.print(stack.pop() + "-->");
+            System.out.print(stack.pop());
+            if (!stack.empty()){
+                System.out.print("-->");
+            }
         }
     }
 }
